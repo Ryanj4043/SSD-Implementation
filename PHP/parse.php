@@ -13,26 +13,30 @@ function getCode(){
 
 }
 
-function analyseCode($input)
-{
-    //$vur = file('mytext.txt');
-    //foreach($vur as $line ){
-    //if (stripos() !== false) {
-        //echo 'true';
-    //}
-    //}
+function analyseCode($input){
+    //rewrite this part toremove excess & rewrite string comparison
+    $vul = file("cache.xml");
+    foreach ($vul as $y) {
+        foreach ($input as $x){
+
+            /*echo strcmp($x, $y);
+
+            if (strcmp($x, $y) == 0) {
+                echo " It worked ";
+            }*/
+        }
+    }
 }
 
 
 function santiseCode($input){
     $file_lines = file($input);
-    $sanatised_lines[] = array();
     foreach ($file_lines as $line) {
         $clean_line = filter_var($line, FILTER_SANITIZE_ENCODED);
-        echo $clean_line;
         $sanatised_lines[] = $clean_line;
     }
-    //analyseCode($sanatised_lines);
+    analyseCode($sanatised_lines);
+
 }
 
 function logReport(){
