@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SSD CW2</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <form name ="2f">
+            <b>Please enter the 2 factor authentication code: </b>
+            <input type="text" placeholder="Enter Code" name="code" required>
+            <br>
+            <button type="button" onclick="check(this.form)">Login</button>
+        </form>
+
+    </div>
+    <script language="javascript">
+    function check(form)/*function to check userid & password*/
+    {
+        /*the following code checkes whether the entered userid and password are matching*/
+        if(form.code.value == "1234")
+        {
+            thiswindow = this.window
+            window.open('upload.html')/*opens the target page while Id & password matches*/
+            thiswindow.close()
+        }
+        else
+        {
+            alert("Error in code")/*displays error message*/
+        }
+    }
+    </script>
+
+</body>
+</html>
