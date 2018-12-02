@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<User>
+  <coder>
+      <Email>jimbob@jimbob.com</Email>
+      <password>#jimbob2001</password>
+  </coder>
+  <coder>
+      <Email>elitecoder@coder.com</Email>
+      <password>h^453t4rggart</password>
+  </coder>
+  <coder>
+      <Email>robot@gmail.com</Email>
+      <password>5Lxu@HR^eLhVZct=</password>
+  </coder>
+  <admin>
+        <Email>admin@admin.com</Email>
+        <password>rxHr6K!Fr+MXNTu=R4cpkmw7_GBMMf3U5q+czGGUMgBtVJ7QTUshM9xaa</password>
+  </admin>
+</User>

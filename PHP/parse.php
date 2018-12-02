@@ -15,15 +15,17 @@ function getCode(){
 
 function analyseCode($input){
     //rewrite this part toremove excess & rewrite string comparison
-    $vul = file("cache.xml");
+    $vul = file("cache.file") or die("Something went wrong: Send the server monkeys");
+    $txt = file("in.file") or die("Something went wrong: Send the server grunts");
+    //print_r($vul);
+    //print_r($input);
     foreach ($vul as $y) {
+        $count = -1;
         foreach ($input as $x){
-
-            /*echo strcmp($x, $y);
-
-            if (strcmp($x, $y) == 0) {
-                echo " It worked ";
-            }*/
+            $count++;
+            if (stripos($y, $x) !== false){
+                echo "Issue itendified as ".$txt[$count];
+            }
         }
     }
 }
@@ -33,6 +35,8 @@ function santiseCode($input){
     $file_lines = file($input);
     foreach ($file_lines as $line) {
         $clean_line = filter_var($line, FILTER_SANITIZE_ENCODED);
+        $clean_line = str_replace("%0D%0A","",$clean_line);
+            //echo $clean_line;
         $sanatised_lines[] = $clean_line;
     }
     analyseCode($sanatised_lines);
@@ -43,8 +47,8 @@ function logReport(){
 
 }
 
-function deleteFile(){
-
+function deleteFile($input){
+    unlink($input);
 }
 
 //santiseCode("HelloWorld.java");
