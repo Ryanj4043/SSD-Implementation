@@ -1,3 +1,0 @@
-Executing a Dynamically Generated SQL Statement: This can lead to SQL injection attacks. Consider using prepared statements.
-Directly writing an Http Parameter to Servlet Output: This can lead to reflected XSS attacks. Consider sanitizing the response.
-Directly writing an Http Parameter to Servlet Output: This can lead to reflected XSS attacks. Consider sanitizing the response.

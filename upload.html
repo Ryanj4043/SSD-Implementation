@@ -10,16 +10,12 @@
 
 <p>This system focuses on analysing your code for security flaws and reporting them back to you.</p>
 
-<input type="file" id="upload">
+<h3>Upload</h3>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="files[]" multiple>
+    <input type="submit" value="Upload File" name="submit">
+</form>
 
-<button type="button" id="btn" onclick="upload()">Upload</button>
-
-<script language="javascript">
-    function upload(){
-
-    }
-
-</script>
-
+<script src="upload.js"></script>
 </body>
 </html>

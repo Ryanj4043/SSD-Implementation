@@ -14,6 +14,7 @@ public class HelloWorld
         	Connection connection = getConnection();
             Statement statement = connection.createStatement();
             resultSet = statement.executeQuery(query.toString());
+            response.getWriter().print(content);
         }
 
 	}

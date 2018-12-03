@@ -1,0 +1,1 @@
+Directly writing an Http Parameter to Servlet Output: This can lead to reflected XSS attacks. Consider sanitizing the response.
