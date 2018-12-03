@@ -1,3 +1,0 @@
-response.getWriter().print(content);
-test
-bob
