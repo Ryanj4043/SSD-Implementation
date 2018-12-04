@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (empty($errors)) {
                 move_uploaded_file($file_tmp, $file);
                 santiseCode($file);
-                //deleteFile("");
+                deleteFile($file);
             }
             if ($errors) print_r($errors);
         }
@@ -46,15 +46,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function analyseCode($input){
     $vul = file("File System\\cache.file") or die("Something went wrong: Send the server monkeys");
     $txt = file("File System\\in.file") or die("Something went wrong: Send the server grunts");
+    $response = [];
     foreach ($vul as $y) {
         $count = -1;
         $count++;
         foreach ($input as $x){
             //echo $count;
             if (stripos($y, $x) !== false){
-              print "Issue itendified as \"".$txt[$count]." \"";
+                $response = "Issue itendified as \"".$txt[$count]." \"";
             }
         }
+        if (empty($errors)) {
+            $response = "No issues Identified. Your code is clean.";
+        }
+        return $response;
     }
 }
 
@@ -70,8 +75,7 @@ function santiseCode($input){
         $sanatised_lines[] = $clean_line;
 
     }
-    //print_r($sanatised_lines);
-    analyseCode($sanatised_lines);
+    print_r(analyseCode($sanatised_lines));
 
 }
 
