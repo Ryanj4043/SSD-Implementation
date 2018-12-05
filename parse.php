@@ -56,11 +56,8 @@ function analyseCode($input){
                 $response = "Issue itendified as \"".$txt[$count]." \"";
             }
         }
-        if (empty($errors)) {
-            $response = "No issues Identified. Your code is clean.";
-        }
-        return $response;
     }
+    return $response;
 }
 
 
@@ -68,10 +65,10 @@ function santiseCode($input){
     $file_lines = file($input);
     foreach ($file_lines as $line) {
         $clean_line = filter_var($line, FILTER_SANITIZE_ENCODED);
-        //echo $clean_line;
+        //print_r($clean_line);
         $clean_line = str_replace("%0D%0A","",$clean_line);
         $clean_line = str_replace("%20","",$clean_line);
-            //echo $clean_line;
+        //print_r($clean_line);
         $sanatised_lines[] = $clean_line;
 
     }
