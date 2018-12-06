@@ -15,6 +15,7 @@
     <coder>
         <Email>test</Email>
         <password>test</password>
+        <code>5555</code>
     </coder>
   <admin>
         <Email>admin@admin.com</Email>

@@ -1,4 +1,5 @@
-const url = 'login.php';
+//const url = 'http://SsdCw2-env.fggdurpnvd.eu-west-2.elasticbeanstalk.com';
+const url = "/server/index.php";
 const form = document.querySelector('form');
 
 form.addEventListener('submit', e => {
@@ -16,9 +17,11 @@ form.addEventListener('submit', e => {
 
     fetch(url, {
         method: 'POST',
+        mode: "no-cors",
+        //credentials: "same-origin",
         body: formData
     }).then(response => response.text()).then(data => {if( data === "true"){
-        window.location.replace("2factor.html");}});
-        console.log(d);
-
+        window.location.replace("2factor.html");
+        console.log(data)}});
 });
+

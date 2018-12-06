@@ -1,0 +1,11 @@
+{
+    "require": {
+        "symfony/phpunit-bridge": "^4.2",
+        "sonata-project/google-authenticator": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "SSD\\": "vendor"
+        }
+    }
+}

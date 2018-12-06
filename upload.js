@@ -1,4 +1,4 @@
-const url = 'parse.php';
+const url = 'server\\parse.php';
 const form = document.querySelector('form');
 
 form.addEventListener('submit', e => {

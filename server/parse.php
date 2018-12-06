@@ -11,7 +11,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['files'])) {
         $errors = [];
-        $path = 'File System\\Upload\\';
+        $path = 'File System/Upload/';
         $extensions = ['java', 'txt'];
         $all_files = count($_FILES['files']['tmp_name']);
 
@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 function analyseCode($input){
-    $vul = file("File System\\cache.file") or die("Something went wrong: Send the server monkeys");
-    $txt = file("File System\\in.file") or die("Something went wrong: Send the server grunts");
+    $vul = file("File System/cache.file") or die("Something went wrong: Send the server monkeys");
+    $txt = file("File System/in.file") or die("Something went wrong: Send the server grunts");
     $response = [];
     foreach ($vul as $y) {
         $count = -1;
