@@ -5,6 +5,7 @@
  * Date: 04/12/2018
  * Time: 00:25
  */
+session_destroy();
 session_abort();
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,13 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     foreach($file->coder as $x) {
         $U = $x->Email;
         $P = $x->password;
+        $c = $x->code;
         if(strcmp($_POST['un'],$U[0]) == 0){
             if (strcmp($_POST['ps'],$P[0]) == 0){
                 $_SESSION['loggedin'] = TRUE;
-                $_SESSION['name'] = $_POST['username'];
+                $_SESSION['name'] = $_POST['un'];
                 $_SESSION['id'] = rand(10000000, 90000000);
+                $_SESSION['secret'] = $c[0];
                 //header('Location: 2factor.html');
                 print_r("true");
+                //print_r($_SESSION);
                 break;
             }
             else{

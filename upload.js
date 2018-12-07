@@ -16,7 +16,11 @@ form.addEventListener('submit', e => {
     fetch(url, {
         method: 'POST',
         body: formData
-    }).then(response => {
-        console.log(response);
-    });
+    }).then(response => response.text()).then( data => {
+
+        if (data === "index.html") {
+            alert("Please log in!!");
+            window.location.replace("index.html");
+        }
+        });
 });

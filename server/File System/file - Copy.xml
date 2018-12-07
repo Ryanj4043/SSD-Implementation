@@ -25,3 +25,21 @@
         <password>_j*yhh3J$+j9LKDQ</password>
     </admin>
 </User>
+        <?xml version="1.0"?>
+<User>
+<admin>
+    <Email>admin@admin.com</Email>
+    <password>rxHr6K!Fr+MXNTu=R4cpkmw7_GBMMf3U5q+czGGUMgBtVJ7QTUshM9xaa</password>
+    <code>MXMRTUXZAUKJY2II</code>
+    <ac>419AOPD0IM</ac>
+</admin>
+<admin>
+    <Email>su@sudo.com</Email>
+    <password>nMdMOUxfcf</password>
+    <code>K7HGOXMV323ZDI54</code>
+    <ac>KYBTCKQTGJ</ac>
+</admin>
+<coder><Email>jimbob@jimbob.com</Email><password>#jimbob2001</password><code>ZA3IKLYMTJKTBDAF</code></coder>
+<coder><Email>elitecoder@coder.com</Email><password>h^453t4rggart</password><code>RAF6F7ZLZMSI55QF</code></coder>
+<coder><Email>robot@gmail.com</Email><password>5Lxu@HR^eLhVZct=</password><code>JA5ORRWV3VBTO3AI</code></coder>
+</User>

@@ -27,11 +27,12 @@ form.addEventListener('submit', e => {
                 }).then(response => response.text()).then(data => {
                     var output = data.split(",");
                     if (output[1] === "true") {
-                        alert("Use this link to gain your 2 factor authentication code via google's service" + output[0]);
+                        window.alert("Please enter this code into the google autheticator app: "+output[0]);
                         window.location.replace("2factor.html");
+
                     }
                 });
-                console.log(d);
+
             }
     }});
 

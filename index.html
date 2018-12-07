@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <form name ="login">
-    <b>Username</b>
+    <b>Email</b>
     <input type="text" placeholder="Enter Username" name="luserid" id="luserid" required>
     <br>
     <b>Password</b>
@@ -18,11 +18,15 @@
     <button type="submit" name="submit">Login</button>
     </form>
     <button id="signup" onclick="signup()">Sign Up</button>
+    <button id="signup" onclick="admin()">admin</button>
 </div>
 
 <script language="javascript">
     function signup(){
         window.location.replace("register.html")
+    }
+    function admin(){
+        window.location.replace("admin/admin login.html")
     }
 </script>
 <script src="login.js"></script>

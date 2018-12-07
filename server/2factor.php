@@ -7,30 +7,41 @@
  */
 
 session_start();
-if($_SESSION['loggedin'] === true) {
+require "../vendor/autoload.php";
+$tfa = new \RobThree\Auth\TwoFactorAuth("RASSDCW2");
+//if (!isset($_SESSION)) { session_start(); print_r("not working here");}
+if($_SESSION['loggedin'] == true) {
+    print_r($_SESSION);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_POST['code'])) {
             // Could not get the data that should have been sent.
-            print_r("false");
+            //print_r("false");
             die ('Something isnt right');
         }
-
         $file = simplexml_load_file("File System/file.xml") or die("trest");
         foreach ($file->coder as $x) {
             $u = $x->Email;
             $c= $x->code;
-            /// sort this
-            if($_SESSION['name'] === $u[0]){
-                if ($_POST['code'] === $c[0]){
+            if($_SESSION['name'] == $u[0]){
+                if ($tfa->verifyCode($_SESSION['secret'], $_POST['code'])){
                     print_r("true");
                     break;
                 }
-                else{
-                    print_r("false");
-                }
             }
         }
+        /*foreach ($file->admin as $x) {
+            $u = $x->Email;
+            $c= $x->code;
+            /// sort this
+            if($_SESSION['name'] == $u[0]){
+                if ($tfa->verifyCode($_SESSION['secret'], $_POST['code'])){
+                    print_r("true");
+                    break;
+                }
+            }
+        }*/
+
     }
 } else{
-    print_r($_SESSION["loggedin"]);
+
 }

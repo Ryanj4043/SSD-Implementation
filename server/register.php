@@ -8,6 +8,9 @@
 
 require "../vendor/autoload.php";
 
+
+session_abort();
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_POST['un'], $_POST['ps'])) {
         // Could not get the data that should have been sent.
@@ -22,25 +25,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Not a valid email");
     }
 
-    $salt ="QW4gQWN0IHRvIG1ha2UgcHJvdmlzaW9uIGZvciBzZWN1cmluZyBjb21wdXRlciBtYXRlcmlhbCBhZ2FpbnN0IHVuYXV0aG9yaXNlZCBhY2Nlc3Mgb3IgbW9kaWZpY2F0aW9uOyBhbmQgZm9yIGNvbm5lY3RlZCBwdXJwb3Nlcy4";
-    $secret = $e.$salt;
-    $g = new \Sonata\GoogleAuthenticator\GoogleAuthenticator();
+    $tfa = new \RobThree\Auth\TwoFactorAuth("RASSDCW2");
+    $secret = $tfa->createSecret();
 
+    $_SESSION['loggedin'] = TRUE;
+    $_SESSION['name'] = $_POST['un'];
+    $_SESSION['id'] = rand(10000000, 90000000);
+    $_SESSION['secret'] = $secret;
 
-    $xml = simplexml_load_file("File System\\file.xml") or die("trest");
+    $loc = "File System\\file.xml";
+
+    $file = simplexml_load_file($loc) or die("trest");
+
+    $xml = $file->addChild("coder");
+
     $xml->addChild("Email", $e);
     $xml->addChild("password",$p);
-    $xml->addChild("code",$g->getCode($secret));
-    $xml->asXML("File System/file.xml");
+    $xml->addChild("code",$secret);
+    $file->asXML($loc);
 
 
-    print_r(\Sonata\GoogleAuthenticator\GoogleQrUrl::generate($e, $secret, 'SSD CW').",true");
+    print_r($secret.",true");
 }
-
-  /*  if ($g->checkCode($secret, $code)) {
-        echo "YES \n";
-    } else {
-        echo "NO \n";
-    }*/
-
-//}
