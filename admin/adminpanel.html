@@ -25,6 +25,12 @@
 
 <p id="showData"></p>
 </body>
+<input type="submit" value="Logout" name="submit" onclick="logout()">
+<script> function logout(){
+    const url = 'server\\logout.php';
+    fetch(url, {method: 'POST'});
+    location.href = "index.html";
+} </script>
 <script>
     var pts;
     function onload() {

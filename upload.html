@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
+<input type="submit" value="Logout" name="submit" onclick="logout()">
+<script> function logout(){
+    const url = 'server\\logout.php';
+    fetch(url, {method: 'POST'});
+    location.href = "index.html";
+} </script>
 <h2>Welcome to the System</h2>
 
 <p>This system focuses on analysing your code for security flaws and reporting them back to you.</p>
@@ -17,5 +23,6 @@
 </form>
 
 <script src="upload.js"></script>
+
 </body>
 </html>
