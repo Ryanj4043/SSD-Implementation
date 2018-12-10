@@ -15,6 +15,8 @@ form.addEventListener('submit', e => {
         if (data === "true") {
             alert("Success");
             window.location.replace("upload.html");
+        } else {
+            alert("Unsuccesful attempt, try another code!")
         }
 
     });

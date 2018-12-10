@@ -19,7 +19,7 @@ form.addEventListener('submit', e => {
         body: formData
     }).then(response => response.text()).then(data => {if( data === "true"){
         location.href = "2factor.html";
-        }else {alert(data);}
+        }else {alert("Incorrect Combintation");}
     });
 });
 

@@ -22,8 +22,13 @@ form.addEventListener('submit', e => {
             alert("Please log in!!");
             window.location.replace("index.html");
         }else{
-            var myWindow = window.open("","results")
+
+            if (data != null){
+                var myWindow = window.open("","results");
             myWindow.document.write("<h3>Your results are:</h3>" +"<p>"+ data + "</p>")
+            }else{
+                alert("Input data not valid!")
+            }
         }
         });
 });

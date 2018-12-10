@@ -5,9 +5,9 @@
  * Date: 07/12/2018
  * Time: 23:39
  */
-
+session_save_path("File System");
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
     $count = 0;
     foreach($_POST as $x) {
         $x = str_replace('"',"",$x);
@@ -22,46 +22,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $count++;
     }
-
-
-    if (strcmp($job, "Update Preferences") == 0){
+    if($source != $_SESSION['name']){
+        if (strcmp($job, "Update Preferences") == 0){
         //print_r("works");
-        $loc = "File System\\cache.file";
-        $loc1 = "File System\\in.file";
-        $array = explode(";", $body);
+            $loc = "File System\\cache.file";
+            $loc1 = "File System\\in.file";
+            $array = explode(";", $body);
 
+            $file = fopen($loc,"a");
+            $file1 = fopen($loc1,"a");
 
-        $file = fopen($loc,"a");
-        $file1 = fopen($loc1,"a");
+            /*fwrite($file, "\n".$array[0]);
+            fclose($file);
 
-        /*fwrite($file, "\n".$array[0]);
-        fclose($file);
+            fwrite($file1, "\n". $array[1]);
+            fclose($file1);*/
+            updateadmin($job,$source,$body);
 
-        fwrite($file1, "\n". $array[1]);
-        fclose($file1);*/
-        updateadmin($job,$source,$body);
-
-    } elseif (strcmp($job, "Elevate User")== 0){
-        //print_r("works");
-        $loc = "File System\\file.xml";
-        $file = simplexml_load_file($loc) or die("trest");
-        $p ="";
-        $secret ="";
-        foreach($file->coder as $coders){
-            if($coders->Email == $body){
-                $p = $coders-> password;
-                $secret = $coders->code;
-                $dom = dom_import_simplexml($coders);
-                $dom->parentNode->removeChild($dom);
+        } elseif (strcmp($job, "Elevate User")== 0){
+            //print_r("works");
+            $loc = "File System\\file.xml";
+            $file = simplexml_load_file($loc) or die("trest");
+            $p ="";
+            $secret ="";
+            foreach($file->coder as $coders){
+                if($coders->Email == $body){
+                    $p = $coders-> password;
+                    $secret = $coders->code;
+                    $dom = dom_import_simplexml($coders);
+                    $dom->parentNode->removeChild($dom);
+                }
             }
-        }
-        $xml = $file->addChild("Admin");
+            $xml = $file->addChild("Admin");
 
-        $xml->addChild("Email", $body);
-        $xml->addChild("password",$p);
-        $xml->addChild("code",$secret);
-        $file->asXML($loc);
-        updateadmin("Elevate User",$source,$body);
+            $xml->addChild("Email", $body);
+            $xml->addChild("password",$p);
+            $xml->addChild("code",$secret);
+            $file->asXML($loc);
+            updateadmin("Elevate User",$source,$body);
+        }
     }
 }
 

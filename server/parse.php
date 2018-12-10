@@ -10,7 +10,6 @@ session_save_path("File System");
 session_start();
 
 if($_SESSION['loggedin'] === true) {
-    //print_r($_SESSION);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_FILES['files'])) {
             $errors = [];

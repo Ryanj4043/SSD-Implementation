@@ -11,6 +11,7 @@ session_start();
 require "../vendor/autoload.php";
 $tfa = new \RobThree\Auth\TwoFactorAuth("RASSDCW2");
 if($_SESSION['loggedin'] == true) {
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_POST['code'])) {
             // Could not get the data that should have been sent.
@@ -29,6 +30,7 @@ if($_SESSION['loggedin'] == true) {
             }
         }
         foreach ($file->admin as $x) {
+            //print_r("hit here");
             $u = $x->Email;
             $c= $x->code;
             /// sort this

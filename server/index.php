@@ -6,6 +6,7 @@
  * Time: 00:25
  */
 session_save_path("File System");
+session_destroy();
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ( !isset($_POST['un'], $_POST['ps']) ) {

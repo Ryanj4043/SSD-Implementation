@@ -14,7 +14,7 @@ form.addEventListener('submit', e => {
     password = document.getElementById("pswrd").value;
     cpassword = document.getElementById("Cpswrd").value;
     if(validateEmail(username)){
-        if (cpassword === password) {
+        if (cpassword == password) {
             const formData = new FormData();
 
             var d = "false";

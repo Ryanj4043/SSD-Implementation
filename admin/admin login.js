@@ -6,13 +6,11 @@ form.addEventListener('submit', e => {
 
     username = document.getElementById("luserid").value;
     password = document.getElementById("lpswrd").value;
-    code = document.getElementById("lcode").value;
     const formData = new FormData();
 
     var d = "false";
     formData.append("un",username);
     formData.append("ps",password);
-    formData.append("code",code);
 
     fetch(url, {
         method: 'POST',
@@ -21,5 +19,6 @@ form.addEventListener('submit', e => {
         body: formData
     }).then(response => response.text()).then(data => {if( data === "true"){
         window.location.replace("2factor.html");
-        console.log(data)}});
+        console.log(data)}
+    else{alert("User name and password incorrect")}});
 });

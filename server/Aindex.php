@@ -5,11 +5,11 @@
  * Date: 04/12/2018
  * Time: 00:25
  */
-
+session_save_path("File System");
 session_abort();
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ( !isset($_POST['un'], $_POST['ps'], $_POST['code']) ) {
+    if ( !isset($_POST['un'], $_POST['ps']) ) {
         // Could not get the data that should have been sent.
         die ('Username and/or password does not exist!');
     }
@@ -21,11 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $c = $x->code;
         if(strcmp($_POST['un'],$U[0]) == 0){
             if (strcmp($_POST['ps'],$P[0]) == 0){
-                if(strcmp($_POST["code"], $ac[0])== 0){
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['name'] = $_POST['un'];
                 $_SESSION['id'] = rand(10000000, 90000000);
-                $_SESSION['secret'] = $c;
+                $_SESSION['secret'] = (string)$c[0];
 
                 print_r("true");
                 break;
@@ -36,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
-}
 else {
     ?>
     <!DOCTYPE html>
