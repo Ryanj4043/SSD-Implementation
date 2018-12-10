@@ -21,6 +21,9 @@ form.addEventListener('submit', e => {
         if (data === "index.html") {
             alert("Please log in!!");
             window.location.replace("index.html");
+        }else{
+            var myWindow = window.open("","results")
+            myWindow.document.write("<h3>Your results are:</h3>" +"<p>"+ data + "</p>")
         }
         });
 });

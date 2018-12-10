@@ -21,32 +21,28 @@
     </style>
 </head>
 <body onload="onload()">
-HELLO
+<h3>Admin panel</h3>
+
 <p id="showData"></p>
 </body>
 <script>
+    var pts;
     function onload() {
-
-        /*       if (location.protocol !== 'https:')
-        {
-            location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-        }*/
         const url = "../server/tablecreation.php";
         fetch(url, {
             method: 'GET'
         }).then(response => response.text()).then(data => {
             buildtable(data);
-        //console.log(data)});
-        //it outputs it as an array here try to sort this tomorrow.!!!!!!!!!!
+            //console.log(data)});
+            //it outputs it as an array here try to sort this tomorrow.!!!!!!!!!!
 
-    });
-
+        });
+    }
     function buildtable(input, classes){
         var txt = input;
         var pt = txt.replace("{\"adminjob\":[", "");
         pt = pt.replace("]}", "");
-        var pts = pt.split("},{");
-        document.write(pts[1]);
+        pts = pt.split("},{");
         for (var i = 0; i < pts.length; i++){
             pts[i] = pts[i].replace("{", "");
             pts[i] = pts[i].replace("}", "");
@@ -67,36 +63,57 @@ HELLO
             var tr = tbl.insertRow();
             ptss = pts[k].split(",");
             for(var l = 0; l <= ptss.length; l++){
-                if(l == ptss.length){
+                if(l === ptss.length){
                     var btn = document.createElement('input');
-                    btn.type = "button";
-                    btn.className = "btn";
-                    btn.value = "test";
-                    //btn.onclick = (function(entry) {return function() {chooseUser(entry);}})(entry);
+                        btn.type = "button";
+                        btn.className = "btn"+k;
+                        btn.value = "test";
+                        btn.onclick = (function() {btnclick(this)} );
                     var td = tr.insertCell();
                     tr.appendChild(btn);
                 } else{
-                var x = ptss[l];
-                console.log(x);
-                var y = x.split(":")
+                x = ptss[l];
+                //console.log(x);
+                var y = x.split(":");
                 var td = tr.insertCell();
                 td.appendChild(document.createTextNode(y[1]));
                 td.style.border = '1px solid black'; }
             }
 
         }
-/*                for(var i = 0; i < 3; i++){
-            var tr = tbl.insertRow();
-            for(var j = 0; j < 2; j++){
-                var td = tr.insertCell();
-                    td.appendChild(document.createTextNode('Cell'));
-                    td.style.border = '1px solid black';
-            }
-            }*/
-
-            body.appendChild(tbl);
-        }
+        body.appendChild(tbl);
     }
+
+        function btnclick(ele){
+            const url = "../server/adminprocessing.php";
+            const formData = new FormData();;
+            var btnNo = ele.className.toString().replace("btn","");
+            for (var k = 0; k < pts.length; k++) {
+                if (k == btnNo) {
+                    ptss = pts[k].split(",");
+                    //console.log(ptss);
+                    for (var l = 0; l < ptss.length; l++) {
+                        var x = ptss[l];
+                        //console.log(x);
+                        var y = x.split(":");
+                        y[0] = y[0].replace(/g"/g, "");
+                        y[1] = y[1].replace(/g"/g, "");
+                        formData.append(y[0].toString(),y[1].toString());
+                    }
+                }
+            }
+            fetch(url, {
+                method: 'POST',
+                mode: "no-cors",
+                //credentials: "same-origin",
+                body: formData
+            }).then(response => response.statusText).then(data => {if(data == "200"){
+                //location.reload();
+                console.log("true")
+            }
+            });
+
+        }
 </script>
 
 

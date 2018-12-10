@@ -6,10 +6,11 @@
  * Time: 12:57
  * This PHP file will be used to parse the files for security vulnerabilities and will send a report back to the user
  */
-
+session_save_path("File System");
 session_start();
+
 if($_SESSION['loggedin'] === true) {
-    print_r($_SESSION);
+    //print_r($_SESSION);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_FILES['files'])) {
             $errors = [];

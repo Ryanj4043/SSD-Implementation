@@ -5,13 +5,12 @@
  * Date: 04/12/2018
  * Time: 19:15
  */
-
+session_save_path("File System");
 session_start();
+//print_r($_SESSION);
 require "../vendor/autoload.php";
 $tfa = new \RobThree\Auth\TwoFactorAuth("RASSDCW2");
-//if (!isset($_SESSION)) { session_start(); print_r("not working here");}
 if($_SESSION['loggedin'] == true) {
-    print_r($_SESSION);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!isset($_POST['code'])) {
             // Could not get the data that should have been sent.
@@ -29,7 +28,7 @@ if($_SESSION['loggedin'] == true) {
                 }
             }
         }
-        /*foreach ($file->admin as $x) {
+        foreach ($file->admin as $x) {
             $u = $x->Email;
             $c= $x->code;
             /// sort this
@@ -39,9 +38,7 @@ if($_SESSION['loggedin'] == true) {
                     break;
                 }
             }
-        }*/
+        }
 
     }
-} else{
-
 }

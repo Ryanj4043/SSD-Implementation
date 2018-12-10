@@ -18,7 +18,7 @@ form.addEventListener('submit', e => {
         //credentials: "same-origin",
         body: formData
     }).then(response => response.text()).then(data => {if( data === "true"){
-        window.location.replace("2factor.html");
-        console.log(data)}});
+        location.href = "2factor.html";
+        }});
 });
 

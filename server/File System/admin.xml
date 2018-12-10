@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0"?>
 <list>
 <adminjob>
-        <job> Update preferences</job>
+        <job>Update Preferences</job>
         <source>admin@admin.com</source>
-        <date> 1/12/2018</date>
+        <date>1/12/2018</date>
         <body>PreparedStatement%20statement%20%3D%20connection.prepareStatement%28query.toString%28%29%29%3B;Creating an SQL PreparedStatement from Dynamic Query String. Consider parameterisation.</body>
 </adminjob>
 <adminjob>
-        <job> Elevate User</job>
+        <job>Elevate User</job>
         <source>admin@admin.com</source>
-        <date> 1/12/2018</date>
+        <date>1/12/2018</date>
         <body>elitecoder@coder.com</body>
 </adminjob>
 </list>

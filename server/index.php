@@ -5,14 +5,13 @@
  * Date: 04/12/2018
  * Time: 00:25
  */
-session_destroy();
-session_abort();
+session_save_path("File System");
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ( !isset($_POST['un'], $_POST['ps']) ) {
-        // Could not get the data that should have been sent.
         die ('Username and/or password does not exist!');
     }
+    //print_r($_POST);
     $file = simplexml_load_file("File System/file.xml") or die("trest");
     foreach($file->coder as $x) {
         $U = $x->Email;
@@ -23,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['name'] = $_POST['un'];
                 $_SESSION['id'] = rand(10000000, 90000000);
-                $_SESSION['secret'] = $c[0];
+                $_SESSION['secret'] = (string)$c[0];
                 //header('Location: 2factor.html');
                 print_r("true");
                 //print_r($_SESSION);
